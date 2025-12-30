@@ -57,6 +57,7 @@ executable guitest
     gi-gio,
     gi-glib,
     gi-gtk,
+    gi-adwaita,
     haskell-gi-base,
 
   -- Directories containing source files.
