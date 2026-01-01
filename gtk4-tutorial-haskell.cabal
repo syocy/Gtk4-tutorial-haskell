@@ -10,7 +10,7 @@ cabal-version: 3.4
 --   http://haskell.org/cabal/users-guide/
 --
 -- The name of the package.
-name: guitest
+name: gtk4-tutorial-haskell
 -- The package version.
 -- See the Haskell package versioning policy (PVP) for standards
 -- guiding when and how versions should be incremented.
@@ -37,30 +37,48 @@ build-type: Simple
 -- Extra doc files to be distributed with the package, such as a CHANGELOG or a README.
 extra-doc-files: CHANGELOG.md
 
--- Extra source files to be distributed with the package, such as examples, or a tutorial module.
--- extra-source-files:
-common warnings
-  ghc-options: -Wall
-
-executable guitest
-  -- Import common warning flags.
-  import: warnings
-  -- .hs or .lhs file containing the Main module.
-  main-is: Main.hs
+common base
+  -- Other library packages from which modules are imported.
+  build-depends:
+    base ^>=4.20.1.0 && <5,
   -- Modules included in this executable, other than Main.
   -- other-modules:
   -- LANGUAGE extensions used by modules in this package.
   other-extensions:
-  -- Other library packages from which modules are imported.
+  -- Base language which the package is written in.
+  default-language: GHC2024
+  -- Extra source files to be distributed with the package, such as examples, or a tutorial module.
+  -- extra-source-files:
+
+common app
+  -- Directories containing source files.
+  hs-source-dirs: app
+
+common warnings
+  ghc-options: -Wall
+
+common optimizations
+  ghc-options: -O1 -fno-cross-module-specialise
+
+common gi-min
   build-depends:
-    base ^>=4.20.1.0,
+    gi-gtk,
+    haskell-gi-base,
+
+common gi-all
+  build-depends:
     gi-gio,
     gi-glib,
     gi-gtk,
     gi-adwaita,
     haskell-gi-base,
 
-  -- Directories containing source files.
-  hs-source-dirs: app
-  -- Base language which the package is written in.
-  default-language: GHC2024
+executable sec03-1
+  import: base, app, warnings, optimizations, gi-min
+  -- .hs or .lhs file containing the Main module.
+  main-is: Sec03_1.hs
+
+executable test
+  import: base, app, warnings, optimizations, gi-min
+  -- .hs or .lhs file containing the Main module.
+  main-is: Test.hs
