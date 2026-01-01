@@ -5,43 +5,38 @@
 
 module Main where
 
-import Data.GI.Base (AttrOp (On, (:=)), new, on, set)
-import GI.Gio qualified as Gio
+import Data.GI.Base (AttrOp ((:=)), new, on)
 import GI.Gtk qualified as Gtk
 
-activate :: Gtk.Application -> IO ()
-activate app = do
-  button <-
+activate :: (?self :: Gtk.Application) => IO ()
+activate = do
+  label <-
     new
-      Gtk.Button
-      [ (#label := "button"),
-        On
-          #clicked
-          ( ?self
-              `set` [ #sensitive := False,
-                      #label := "label"
-                    ]
-          )
-      ]
+      Gtk.Label
+      [#label := "hello"]
+
   window <-
     new
       Gtk.ApplicationWindow
-      [ #application := app,
-        #title := "title",
+      [ #title := "hello",
         #defaultWidth := 400,
         #defaultHeight := 300,
-        #child := button
+        #application := ?self,
+        #child := label
       ]
-  window.show
+
+  window.present
+
+  pure ()
 
 main :: IO ()
 main = do
   app <-
     new
       Gtk.Application
-      [ #applicationId := "com.example.test",
-        On #activate (activate ?self)
-      ]
+      [#applicationId := "com.example.test"]
+
+  _ <- on app #activate activate
 
   _ <- app.run Nothing
 
