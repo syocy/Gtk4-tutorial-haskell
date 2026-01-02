@@ -3,7 +3,7 @@
 {-# LANGUAGE OverloadedRecordDot #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Test where
+module Main where
 
 import Data.GI.Base (AttrOp ((:=)), new, on)
 import GI.Gtk qualified as Gtk

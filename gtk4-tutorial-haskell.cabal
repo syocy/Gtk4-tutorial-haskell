@@ -75,8 +75,23 @@ common gi-all
 
 executable sec03-1
   import: base, app, warnings, optimizations, gi-min
-  -- .hs or .lhs file containing the Main module.
   main-is: Sec03_1.hs
+
+executable sec03-2
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec03_2.hs
+
+executable sec03-3
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec03_3.hs
+
+executable sec03-4
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec03_4.hs
+
+executable sec04-1
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec04_1.hs
 
 executable test
   import: base, app, warnings, optimizations, gi-min
