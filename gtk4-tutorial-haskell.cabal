@@ -40,16 +40,17 @@ extra-doc-files: CHANGELOG.md
 common base
   -- Other library packages from which modules are imported.
   build-depends:
-    base ^>=4.20.1.0 && <5,
+    base ^>=4.20.1.0 && <5
+
   -- Modules included in this executable, other than Main.
   -- other-modules:
   -- LANGUAGE extensions used by modules in this package.
   other-extensions:
   -- Base language which the package is written in.
   default-language: GHC2024
-  -- Extra source files to be distributed with the package, such as examples, or a tutorial module.
-  -- extra-source-files:
 
+-- Extra source files to be distributed with the package, such as examples, or a tutorial module.
+-- extra-source-files:
 common app
   -- Directories containing source files.
   hs-source-dirs: app
@@ -58,7 +59,9 @@ common warnings
   ghc-options: -Wall
 
 common optimizations
-  ghc-options: -O1 -fno-cross-module-specialise
+  ghc-options:
+    -O1
+    -fno-cross-module-specialise
 
 common gi-min
   build-depends:
@@ -67,10 +70,10 @@ common gi-min
 
 common gi-all
   build-depends:
+    gi-adwaita,
     gi-gio,
     gi-glib,
     gi-gtk,
-    gi-adwaita,
     haskell-gi-base,
 
 executable sec03-1
@@ -104,6 +107,10 @@ executable sec04-3
 executable sec04-4
   import: base, app, warnings, optimizations, gi-min
   main-is: Sec04_4.hs
+
+executable sec05-1
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec05_1.hs
 
 executable test
   import: base, app, warnings, optimizations, gi-min
