@@ -28,12 +28,12 @@ appActivate = do
   win <- new Gtk.ApplicationWindow [#application := ?self]
   win `set` [#title := "Taketori"]
   win `set` [#defaultWidth := 400, #defaultHeight := 300]
-  
+
   tv <- new Gtk.TextView []
   tb <- tv `get` #buffer
   tb.setText text (-1)
   tv `set` [#wrapMode := Gtk.WrapModeWordChar]
-  
+
   win `set` [#child := tv]
 
   win.present
