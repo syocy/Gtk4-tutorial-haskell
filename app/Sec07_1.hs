@@ -9,7 +9,7 @@
 module Main where
 
 import Control.Exception.Safe (try)
-import Control.Monad (when)
+import Control.Monad (when, forM_)
 import Data.GI.Base (AttrOp ((:=)), GError, get, new, on, set)
 import Data.Text qualified as T
 import Data.Text.Encoding qualified as T
@@ -43,6 +43,9 @@ appOpen files _ = do
     Right (contents, _) -> do
       let contentsText = T.decodeUtf8 contents
       tb.setText contentsText (fromIntegral $ T.length contentsText)
+      filenameMaybe <- file.getBasename
+      _ <- forM_ filenameMaybe \filename -> do
+        win `set` [#title := T.pack filename]
       win.present
     Left (err :: GError) -> do
       message <- Gtk.gerrorMessage err
