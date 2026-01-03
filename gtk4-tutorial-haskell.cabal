@@ -40,7 +40,8 @@ extra-doc-files: CHANGELOG.md
 common base
   -- Other library packages from which modules are imported.
   build-depends:
-    base ^>=4.20.1.0 && <5
+    base ^>=4.20.1.0 && <5,
+    safe-exceptions,
 
   -- Modules included in this executable, other than Main.
   -- other-modules:
@@ -65,16 +66,22 @@ common optimizations
 
 common gi-min
   build-depends:
+    bytestring,
+    gi-gio,
+    gi-glib,
     gi-gtk,
     haskell-gi-base,
+    text,
 
 common gi-all
   build-depends:
+    bytestring,
     gi-adwaita,
     gi-gio,
     gi-glib,
     gi-gtk,
     haskell-gi-base,
+    text,
 
 executable sec03-1
   import: base, app, warnings, optimizations, gi-min
@@ -111,6 +118,14 @@ executable sec04-4
 executable sec05-1
   import: base, app, warnings, optimizations, gi-min
   main-is: Sec05_1.hs
+
+executable sec05-2
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec05_2.hs
+
+executable sec07-1
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec07_1.hs
 
 executable test
   import: base, app, warnings, optimizations, gi-min
