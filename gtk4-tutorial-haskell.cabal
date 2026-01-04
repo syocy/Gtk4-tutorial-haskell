@@ -131,6 +131,10 @@ executable sec07-2
   import: base, app, warnings, optimizations, gi-min
   main-is: Sec07_2.hs
 
+executable sec08-1
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec08_1.hs
+
 executable test
   import: base, app, warnings, optimizations, gi-min
   -- .hs or .lhs file containing the Main module.
