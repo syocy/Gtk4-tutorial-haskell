@@ -43,9 +43,9 @@ deRefTfeTextViewStatePtr :: P.Ptr () -> IO TfeTextViewState
 deRefTfeTextViewStatePtr = P.deRefStablePtr . P.castPtrToStablePtr
 
 freeTfeTextViewStatePtr :: P.Ptr () -> IO ()
-freeTfeTextViewStatePtr = 
+freeTfeTextViewStatePtr =
   -- There is no need to restore type info when freeing a StablePtr
-  P.freeStablePtr . P.castPtrToStablePtr 
+  P.freeStablePtr . P.castPtrToStablePtr
 
 beforeClose :: (?self :: Gtk.ApplicationWindow) => Gtk.Notebook -> IO Bool
 beforeClose nb = do
