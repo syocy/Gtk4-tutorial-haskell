@@ -134,3 +134,7 @@ executable sec07-2
 executable sec08-1
   import: base, app, warnings, optimizations, gi-min
   main-is: Sec08_1.hs
+
+executable sec09-1
+  import: base, app, warnings, optimizations, gi-min
+  main-is: Sec09_1.hs
